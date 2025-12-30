@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SleepFunctionsTest {
+class SleepTrackerAppTest {
 
     @Test
     void testAverageSleepNormal() {
@@ -57,8 +57,8 @@ class SleepFunctionsTest {
     void testChronotypeOwl() {
         ChronotypeFunction func = new ChronotypeFunction();
         List<SleepingSession> sessions = List.of(
-                new SleepingSession(LocalDateTime.of(2025,12,30,23,30),
-                        LocalDateTime.of(2025,12,31,9,30), SleepQuality.GOOD)
+                new SleepingSession(LocalDateTime.of(2025, 12, 30, 23, 30),
+                        LocalDateTime.of(2025, 12, 31, 9, 30), SleepQuality.GOOD)
         );
         SleepAnalysisResult result = func.apply(sessions);
         assertEquals("Сова", result.getValue());
@@ -79,7 +79,7 @@ class SleepFunctionsTest {
                 new SleepingSession(LocalDateTime.now(), LocalDateTime.now().plusHours(7), SleepQuality.BAD)
         );
         SleepAnalysisResult result = func.apply(sessions);
-        assertEquals(7*60, (long) result.getValue());
+        assertEquals(7 * 60, (long) result.getValue());
     }
 
     @Test
@@ -97,7 +97,7 @@ class SleepFunctionsTest {
                 new SleepingSession(LocalDateTime.now(), LocalDateTime.now().plusHours(7), SleepQuality.BAD)
         );
         SleepAnalysisResult result = func.apply(sessions);
-        assertEquals(5*60, (long) result.getValue());
+        assertEquals(5 * 60, (long) result.getValue());
     }
 
     @Test
@@ -111,8 +111,8 @@ class SleepFunctionsTest {
     void testSleeplessNightsSome() {
         SleeplessNightsFunction func = new SleeplessNightsFunction();
         List<SleepingSession> sessions = List.of(
-                new SleepingSession(LocalDateTime.of(2025,12,30,23,0),
-                        LocalDateTime.of(2025,12,31,6,0), SleepQuality.GOOD)
+                new SleepingSession(LocalDateTime.of(2025, 12, 30, 23, 0),
+                        LocalDateTime.of(2025, 12, 31, 6, 0), SleepQuality.GOOD)
         );
         SleepAnalysisResult result = func.apply(sessions);
         assertEquals(0L, result.getValue());
@@ -124,6 +124,7 @@ class SleepFunctionsTest {
         SleepAnalysisResult result = func.apply(List.of());
         assertEquals(0, result.getValue());
     }
+
     @Test
     void testTotalSessionsNormal() {
         TotalSessionsFunction func = new TotalSessionsFunction();
