@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class ChronotypeFunction implements SleepFunction {
     private static final String DESCRIPTION = "Хронотип пользователя ";
+
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
-
         if (sessions.isEmpty()) {
             return new SleepAnalysisResult(DESCRIPTION, "Нет данных");
         }
