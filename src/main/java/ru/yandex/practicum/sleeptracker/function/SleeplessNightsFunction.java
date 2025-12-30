@@ -1,4 +1,6 @@
-package ru.yandex.practicum.sleeptracker;
+package ru.yandex.practicum.sleeptracker.function;
+
+import ru.yandex.practicum.sleeptracker.model.SleepingSession;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,11 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SleeplessNightsFunction implements SleepFunction {
+    private static final String DESCRIPTION = "Количество бессонных ночей ";
 
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
         if (sessions.isEmpty()) {
-            return new SleepAnalysisResult("Количество бессонных ночей", 0);
+            return new SleepAnalysisResult(DESCRIPTION, 0);
         }
 
         SleepingSession firstSession = sessions.stream()
@@ -34,7 +37,7 @@ public class SleeplessNightsFunction implements SleepFunction {
                 .filter(night -> sessions.stream().noneMatch(s -> intersectsNight(s, night)))
                 .count();
 
-        return new SleepAnalysisResult("Количество бессонных ночей ", sleeplessCount);
+        return new SleepAnalysisResult(DESCRIPTION, sleeplessCount);
     }
 
     private static boolean intersectsNight(SleepingSession s, LocalDate nightDate) {

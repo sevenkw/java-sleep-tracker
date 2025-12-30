@@ -1,4 +1,6 @@
-package ru.yandex.practicum.sleeptracker;
+package ru.yandex.practicum.sleeptracker.function;
+
+import ru.yandex.practicum.sleeptracker.model.SleepingSession;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ChronotypeFunction implements SleepFunction {
-
+    private static final String DESCRIPTION = "Хронотип пользователя ";
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
 
         if (sessions.isEmpty()) {
-            return new SleepAnalysisResult("Хронотип пользователя", "Нет данных");
+            return new SleepAnalysisResult(DESCRIPTION, "Нет данных");
         }
 
         LocalDate firstNight = sessions.stream()
@@ -60,7 +62,7 @@ public class ChronotypeFunction implements SleepFunction {
             chronoType = "Голубь";
         }
 
-        return new SleepAnalysisResult("Хронотип пользователя ", chronoType);
+        return new SleepAnalysisResult(DESCRIPTION, chronoType);
     }
 
     private static boolean intersectsNight(SleepingSession s, LocalDate nightDate) {
